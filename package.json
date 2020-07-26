@@ -1,0 +1,10 @@
+{
+  "version": "0.0.0",
+  "scripts": {
+    "serve:mock": "prism mock reference/Catalog.v1.yaml",
+    "serve:mock:dynamic": "prism mock reference/Catalog.v1.yaml -d"
+  },
+  "devDependencies": {
+    "@stoplight/prism-cli": "^3.3.6"
+  }
+}

@@ -1,0 +1,102 @@
+openapi: 3.0.0
+info:
+  title: Catalog of Products And Brands
+  version: '1.0'
+  license:
+    name: MIT
+servers:
+  - url: 'http://localhost:3000'
+    description: dev
+  - url: 'http://localhost:3100'
+    description: mock
+paths:
+  /products:
+    get:
+      summary: List Available  Products.
+      operationId: getProductList
+      description: Get list of available products.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: ../models/Product.v1.yaml
+        '404':
+          description: Not Found
+      parameters:
+        - schema:
+            type: number
+            example: 123
+          in: query
+          name: customerId
+          description: Filter by customer ID.
+  /brands:
+    get:
+      summary: List of Brands
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: ../models/Brand.v1.yaml
+      operationId: getBrandList
+      description: Get list of brands of available products.
+  '/brands/{brandId}':
+    parameters:
+      - schema:
+          type: string
+        name: brandId
+        in: path
+        required: true
+    get:
+      summary: Get Brand Details By ID
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ../models/Brand.v1.yaml
+        '404':
+          description: Not Found
+      operationId: getBrandById
+      parameters: []
+  '/products/{productId}':
+    parameters:
+      - schema:
+          type: string
+        name: productId
+        in: path
+        required: true
+    get:
+      summary: Get Product Details By ID
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ../models/Product.v1.yaml
+              examples:
+                leica-q2:
+                  value:
+                    id: 1055
+                    name: Leica Q2
+                    imageUrl: 'https://www.amazon.com/images/I/51VzUmsHH3L._AC_.jpg'
+                    brandId: 3001
+                    category: non-edible
+        '404':
+          description: Not Found
+      operationId: getProductById
+      description: ''
+components:
+  schemas: {}

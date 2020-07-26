@@ -1,0 +1,18 @@
+title: Brand
+type: object
+description: 'A brand is a name used by an organization or business person for labeling a product, product group, or similar.'
+properties:
+  id:
+    type: number
+    x-faker: random.number
+  name:
+    type: string
+    x-faker: company.companyName
+  logoUrl:
+    type: string
+    format: uri
+    x-faker: image.imageUrl
+  foundingDate:
+    type: string
+    format: date
+    x-faker: date.past

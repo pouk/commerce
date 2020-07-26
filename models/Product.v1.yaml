@@ -1,0 +1,31 @@
+title: Product
+type: object
+x-tags:
+  - catalog
+  - product
+x-examples:
+  microwave:
+    id: 1055
+    name: 'Kenmore White 17" Microwave'
+    image: kenmore-microwave-17in.jpg
+description: 'Any offered product. E.g.: a pair of shoes; a concert ticket;'
+properties:
+  id:
+    type: number
+    example: 123
+    x-faker: random.number
+  name:
+    type: string
+    x-faker: commerce.productName
+  imageUrl:
+    type: string
+    format: uri
+    x-faker: image.imageUrl
+  brandId:
+    type: number
+    x-faker: random.number
+  category:
+    $ref: ./Category.v1.yaml
+required:
+  - id
+  - name
